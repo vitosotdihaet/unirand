@@ -16,12 +16,17 @@ async def send_message(message, msg, private):
 full_range = (0x20, 0xFFFF)
 alchemical_range = (0x1F700, 0x1F77F)
 
+MAX_LENGTH = 5 + 8
+
 def get_response(msg: str) -> str:
     msg = msg.lower()
+    msg = ' '.join(msg.split())
 
     if msg[:len('unirand')] == 'unirand':
-        if len(msg) > len('unirand') and msg[len('unirand') + 1:][0].isdigit():            
+        if MAX_LENGTH > len(msg) > len('unirand') and msg[len('unirand') + 1:][0].isdigit():
             return '# ' + generate_random_unicode(int(msg[len('unirand') + 1:]))
+        elif len(msg) >= MAX_LENGTH:
+            return '# Go fuck yourself, bitch.'
         else:
             return '# ' + generate_random_unicode(1)
         
