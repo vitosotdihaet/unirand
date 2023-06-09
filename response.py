@@ -1,6 +1,8 @@
 import discord
 import random
 
+from boobs import boobs
+
 
 async def send_message(message, msg, private):
     try:
@@ -29,7 +31,9 @@ def get_response(msg: str) -> str:
             return '# Go fuck yourself, bitch.'
         else:
             return '# ' + generate_random_unicode(1)
-        
+    elif msg == 'boobs':
+        return random.choice(boobs)
+
 
 def generate_random_unicode(n: int, random_range=full_range) -> str:
     if n == 0: n = 1
